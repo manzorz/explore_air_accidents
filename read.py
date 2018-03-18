@@ -22,8 +22,6 @@ def get_specific_airport_code(data, string_youre_after):
             str_found.append(row)
     return(str_found)
 
-lax_code = get_specific_airport_code(data=aviation_data, string_youre_after='LAX94LA336')
-
 #linear time algorithm to search for string 'LAX94LA336'
 def linear_find_str(data, string_youre_after):
     """
@@ -43,3 +41,15 @@ def linear_find_str(data, string_youre_after):
         if row[2] == string_youre_after:
             str_found.append(row)
     return(str_found)
+
+def binary_search_str(data, string_youre_after):
+    """
+    Search for the string using a binary approach.
+
+    Algorithm jumps between midpoints of the upper
+    and lower bounds of the dataset, minimizing
+    the number of iterations necessary.
+
+    The speed of this function is determined by
+    O(log(n)).
+    """
