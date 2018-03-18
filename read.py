@@ -1,3 +1,5 @@
+import timeit
+
 with open('AviationData.txt', 'r') as file:
     lines = file.readlines()
 
@@ -16,9 +18,8 @@ def get_specific_airport_code(data, string_youre_after):
     #   iterating through the entire dataset before finding the code.
     str_found = []
     for row in data:
-        for item in row:
-            if item == string_youre_after:
-                str_found.append(row)
+        if string_youre_after in row:
+            str_found.append(row)
     return(str_found)
 
 lax_code = get_specific_airport_code(data=aviation_data, string_youre_after='LAX94LA336')
@@ -29,10 +30,3 @@ def linear_find_str(data, string_youre_after):
     Find the row(s) of data where a specific string occurs
     using a linear time algorithm.
     """
-    str_found = []
-    for row in data:
-        if string_youre_after in row:
-        str_found.append(row)
-    return(str_found)
-lin_str = linear_find_str(data=aviation_data, string_youre_after='LAX94LA336')
-lin_str
