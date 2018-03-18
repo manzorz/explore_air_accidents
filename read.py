@@ -23,13 +23,16 @@ def get_specific_airport_code(data, string_youre_after):
 
 lax_code = get_specific_airport_code(data=aviation_data, string_youre_after='LAX94LA336')
 
-
 #linear time algorithm to search for string 'LAX94LA336'
 def linear_find_str(data, string_youre_after):
     """
     Find the row(s) of data where a specific string occurs
     using a linear time algorithm.
     """
-
-
-lin_str = linear_find_str(data=aviation_data, str='LAX94LA336')
+    str_found = []
+    for row in data:
+        if string_youre_after in row:
+        str_found.append(row)
+    return(str_found)
+lin_str = linear_find_str(data=aviation_data, string_youre_after='LAX94LA336')
+lin_str
