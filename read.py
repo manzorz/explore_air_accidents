@@ -93,3 +93,46 @@ def binary_search_str(data, string_youre_after):
     else:
         print('The string ' + string_youre_after + ' is not in in this dataset.')
         return(-1)
+
+def subset_by_country(data, country):
+    in_the_right_country = []
+    for row in data:
+        if row[5] == country:
+            in_the_right_country.append(row)
+    return(in_the_right_country)
+
+def accident_subset(data, string='Accident'):
+    is_accident = []
+    for row in data:
+        if row[1] == string:
+            is_accident.append(row)
+    return(is_accident)
+
+def count_accidents_by_state(data):
+    us_only = subset_by_country(data, 'United States')
+    accidents_in_us_only = accident_subset(us_only, 'Accident')
+    locations = [loc[4] for loc in accidents_in_us_only]
+    states = [state[-2:] for state in locations]
+    dict_of_state_counts = {}
+    for state in states:
+        if state in dict_of_state_counts:
+            dict_of_state_counts[state] += 1
+        else:
+            dict_of_state_counts[state] = 1
+    return(dict_of_state_counts)
+
+state_accident_counts = count_accidents_by_state(data)
+
+def get_max_value(dictionary):
+    """
+    Returns the key for the dictionary item with the greatest value
+    """
+    max = 0
+    highest = ''
+    for key, value in dictionary.items():
+        if value > max:
+            max = value
+            highest = key
+    return(highest)
+
+get_max_value(state_accident_counts)
