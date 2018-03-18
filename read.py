@@ -1,4 +1,4 @@
-import timeit
+import re
 
 with open('AviationData.txt', 'r') as file:
     lines = file.readlines()
@@ -6,6 +6,11 @@ with open('AviationData.txt', 'r') as file:
 file = [row.split(' | ') for row in lines]
 header = file[0]
 aviation_data = file[1:]
+
+def find_the_right_column(row_of_the_dataset, pattern):
+    for i in range(len(row_of_the_dataset)):
+        if re.match(pattern=pattern, string=row_of_the_dataset[i]) is not None:
+            return(i)
 
 def get_specific_airport_code(data, string_youre_after):
     """
@@ -59,6 +64,7 @@ def binary_search_str(data, string_youre_after):
     position of the string in a sorted list.
     """
     #use regex to find column that kind of looks right
+    data[1]
     #sort that column (now list named correct_column)
     #set upper bound
     #set lower bound
