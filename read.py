@@ -15,7 +15,7 @@ def get_specific_airport_code(data, string_youre_after):
     #Note: Below is a geometric algorithm to find the specified string.
     #   This approach is ideal for short lists. However, in this case
     #   it does not maximize efficieny, since the user risks
-    #   iterating through the entire dataset before finding the code.
+    #   iterating through the entire dataset before finding the string.
     str_found = []
     for row in data:
         if string_youre_after in row:
