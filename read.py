@@ -8,6 +8,9 @@ header = file[0]
 aviation_data = file[1:]
 
 def find_the_right_column(row_of_the_dataset, pattern):
+    """
+    Use a regex pattern to find the index within common lists
+    """
     for i in range(len(row_of_the_dataset)):
         if re.match(pattern=pattern, string=row_of_the_dataset[i]) is not None:
             return(i)
@@ -64,7 +67,8 @@ def binary_search_str(data, string_youre_after):
     position of the string in a sorted list.
     """
     #use regex to find column that kind of looks right
-    data[1]
+
+    col_index = find_the_right_column(aviation_data[26], pattern='[A-Z]{3}[0-9]{2}[A-Z]{2}[0-9]{3}.*')
     #sort that column (now list named correct_column)
     #set upper bound
     #set lower bound
