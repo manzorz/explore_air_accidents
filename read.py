@@ -52,4 +52,28 @@ def binary_search_str(data, string_youre_after):
 
     The speed of this function is determined by
     O(log(n)).
+
+    Note: Unfortunately, this function returns
+    the index of a sorted list of strings, so
+    it cannot return the entire row, just the
+    position of the string in a sorted list.
     """
+    #use regex to find column that kind of looks right
+    #sort that column (now list named correct_column)
+    #set upper bound
+    #set lower bound
+    #set index at midpoint of upper & lower bounds
+    #test row at 👆 index for presence of string_youre_after
+    #set guess to string in row at index
+    #while string is not in that row and lower bound hansn't met or crossed upper bound
+    #   if string_youre_after < guess:
+    #       set upper limit to index-1
+    #   else:
+    #       set lower limit to index+1
+    #set index of subsequent guess
+    #set guess equal to string at 👆 index
+    #if string_youre_after == guess:
+    #   return index
+    #else:
+    #   print('The string ' + string_youre_after + ' is not in in this dataset.')
+    #   return -1
