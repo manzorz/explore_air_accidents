@@ -121,7 +121,7 @@ def count_accidents_by_state(data):
             dict_of_state_counts[state] = 1
     return(dict_of_state_counts)
 
-state_accident_counts = count_accidents_by_state(data)
+state_accident_counts = count_accidents_by_state(aviation_data)
 
 def get_max_value(dictionary):
     """
@@ -136,3 +136,23 @@ def get_max_value(dictionary):
     return(highest)
 
 get_max_value(state_accident_counts)
+
+header[23:25]
+
+aviation_data[85][3]
+
+def count_by_unique_colname_value(data, colname):
+    """
+    Takes an item from the header list and returns
+    a ditionary of each item in that column and
+    the counts of times it occurs.
+    """
+    counts = {}
+    index = header.index(colname)
+    for row in data:
+        col_val = row[index]
+        if col_val in counts:
+            counts[col_val] += 1
+        else:
+            counts[col_val] = 1
+    return(counts)
