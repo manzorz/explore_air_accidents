@@ -15,6 +15,12 @@ def find_the_right_column(row_of_the_dataset, pattern):
         if re.match(pattern=pattern, string=row_of_the_dataset[i]) is not None:
             return(i)
 
+def get_entire_column(list_of_lists, column_index):
+    """Get column from a list of lists and an index"""
+    return [col[column_index] for col in list_of_lists]
+
+weird_codes = get_entire_column(aviation_data, 2)
+
 def get_specific_airport_code(data, string_youre_after):
     """
     Find the row(s) of data where a specific string occurs
@@ -66,9 +72,7 @@ def binary_search_str(data, string_youre_after):
     it cannot return the entire row, just the
     position of the string in a sorted list.
     """
-    #use regex to find column that kind of looks right
-
-    col_index = find_the_right_column(aviation_data[26], pattern='[A-Z]{3}[0-9]{2}[A-Z]{2}[0-9]{3}.*')
+    col_index = find_the_right_column(data[0], pattern='[A-Z]{3}[0-9]{2}[A-Z]{2}[0-9]{3}.*')
     #sort that column (now list named correct_column)
     #set upper bound
     #set lower bound
