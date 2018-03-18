@@ -29,4 +29,17 @@ def linear_find_str(data, string_youre_after):
     """
     Find the row(s) of data where a specific string occurs
     using a linear time algorithm.
+
+    Unlike the exponential algorithm, this linear one saves
+    time by only searching one column (column at index 2),
+    thereby using only one for loop instead of 2 (or the in
+    function).
+
+    To use this function, the user must only search this one
+    column, limiting the scope of the function.
     """
+    str_found = []
+    for row in data:
+        if row[2] == string_youre_after:
+            str_found.append(row)
+    return(str_found)
