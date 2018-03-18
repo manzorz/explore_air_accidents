@@ -1,4 +1,5 @@
 import re
+import math
 
 with open('AviationData.txt', 'r') as file:
     lines = file.readlines()
@@ -18,8 +19,6 @@ def find_the_right_column(row_of_the_dataset, pattern):
 def get_entire_column(list_of_lists, column_index):
     """Get column from a list of lists and an index"""
     return [col[column_index] for col in list_of_lists]
-
-weird_codes = get_entire_column(aviation_data, 2)
 
 def get_specific_airport_code(data, string_youre_after):
     """
@@ -73,21 +72,24 @@ def binary_search_str(data, string_youre_after):
     position of the string in a sorted list.
     """
     col_index = find_the_right_column(data[0], pattern='[A-Z]{3}[0-9]{2}[A-Z]{2}[0-9]{3}.*')
-    #sort that column (now list named correct_column)
-    #set upper bound
-    #set lower bound
-    #set index at midpoint of upper & lower bounds
-    #test row at 👆 index for presence of string_youre_after
-    #set guess to string in row at index
-    #while string is not in that row and lower bound hansn't met or crossed upper bound
-    #   if string_youre_after < guess:
-    #       set upper limit to index-1
-    #   else:
-    #       set lower limit to index+1
-    #set index of subsequent guess
-    #set guess equal to string at 👆 index
-    #if string_youre_after == guess:
-    #   return index
-    #else:
-    #   print('The string ' + string_youre_after + ' is not in in this dataset.')
-    #   return -1
+    #currently hard-coding regex for strings like LAX94LA336. Future developments could detect such a pattern
+    #and dynamically produce a regex
+    correct_column = get_entire_column(data, col_index)
+    correct_column.sort()
+    upper = len(correct_column)-1
+    lower = 0
+    index = math.floor((upper+lower)/2)
+    #use of floor is arbitrary (could also be ceil) but consistent throughout the function
+    guess = correct_column[index]
+    while string_youre_after != guess and lower < upper:
+      if string_youre_after < guess:
+          upper = index-1
+      else:
+          lower = index+1
+      index = math.floor((upper+lower)/2)
+      guess = correct_column[index]
+    if string_youre_after == guess:
+        return(index)
+    else:
+        print('The string ' + string_youre_after + ' is not in in this dataset.')
+        return(-1)
