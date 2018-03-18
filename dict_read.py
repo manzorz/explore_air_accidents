@@ -18,10 +18,10 @@ def string_search_list_of_dicts(list_of_dicts, string):
 
     Exponential time function, two for loops
     """
+    dicts_with_string = []
     for d in list_of_dicts:
         for key,value in d.items():
             if value == string:
-                return(d)
+                dicts_with_string.append(d)
 
 lax_dict = string_search_list_of_dicts(aviation_dict_list, 'LAX94LA336')
-lax_dict
